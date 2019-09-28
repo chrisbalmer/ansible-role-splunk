@@ -3,6 +3,7 @@
   unarchive:
     src: "{{ splunk_installer }}"
     dest: "{{ splunk_home_parent }}/"
+    remote_src: yes
 
 - name: Create group
   group:
