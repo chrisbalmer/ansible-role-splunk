@@ -1,9 +1,9 @@
 [general]
-serverName = opsspllic0
-pass4SymmKey = somekeyhere
+serverName = {{ ansible_fqdn }}
+pass4SymmKey = {{ splunk_key_general }}
 
 [sslConfig]
-sslPassword = somekeyhere
+sslPassword = {{ splunk_ssl_password }}
 
 [lmpool:auto_generated_pool_download-trial]
 description = auto_generated_pool_download-trial

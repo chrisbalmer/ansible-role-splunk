@@ -24,6 +24,10 @@ splunk_firewall_ports:
   - 8000/tcp
   - 8089/tcp
 
+# General
+splunk_key_general: password
+splunk_ssl_password: password
+
 # Conf file paths
 splunk_server_conf_location: "{{ splunk_home }}/etc/system/local/server.conf"
 
