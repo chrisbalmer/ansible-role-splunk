@@ -1,5 +1,12 @@
 ---
-- name: Restart Splunk
+- name: Splunk Service Check
   service:
     name: splunk
     state: restarted
+    enabled: yes
+- name: Disable-THP Service Check
+  systemd:
+    name: disable-thp
+    state: restarted
+    enabled: yes
+    daemon_reload: yes

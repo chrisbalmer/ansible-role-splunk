@@ -6,3 +6,4 @@
     owner: splunk 
     group: splunk
     backup: yes
+  register: Splunk Service Check
