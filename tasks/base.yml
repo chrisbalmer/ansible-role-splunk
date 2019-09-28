@@ -35,8 +35,8 @@
   template:
     src: user-seed.conf.j2 
     dest: /opt/splunk/etc/system/local/user-seed.conf 
-    owner: splunk 
-    group: splunk
+    owner: "{{ splunk_user }}"
+    group: "{{ splunk_group }}"
   when: splunk_check.stat.exists == false
 
 - name: Enable boot start
