@@ -1,0 +1,19 @@
+---
+splunk_user: splunk
+splunk_group: splunk
+splunk_uid: 1050
+splunk_gid: 1050
+splunk_home: /opt/splunk
+splunk_home_parent: /opt
+splunk_installer: http://ops-mirror-1.farm.oakops.io/pub/splunk-7.3.1.1-7651b7244cf2-Linux-x86_64.tgz
+splunk_login_user: admin
+splunk_login_pass: HelloWorld123#
+splunk_service_file: /etc/init.d/splunk
+splunk_service_ulimit_start: /etc/init.d/functions
+splunk_service_ulimits:
+  - type: "S"
+    value: 32768
+    ulimit: "n"
+  - type: "H"
+    value: 65536
+    ulimit: "n"

@@ -1,0 +1,60 @@
+---
+- name: Download and unpack installation
+  unarchive:
+    src: "{{ splunk_installer }}"
+    dest: "{{ splunk_home_parent }}/"
+
+- name: Create group
+  group:
+    name: "{{ splunk_group }}"
+    gid: "{{ splunk_gid }}"
+
+- name: Create user
+  user:
+    name: "{{ splunk_user }}"
+    uid: "{{ splunk_uid }}"
+    home: "{{ splunk_home }}"
+
+- name: Change home ownership
+  file:
+    path: "{{ splunk_home }}"
+    state: directory 
+    recurse: yes 
+    owner: "{{ splunk_user }}" 
+    group: "{{ splunk_group }}"
+
+- name: Seed password with user-seed.conf
+  template:
+    src: user-seed.conf.j2 
+    dest: /opt/splunk/etc/system/local/user-seed.conf 
+    owner: splunk 
+    group: splunk
+
+- name: Enable boot start
+  command: "{{ splunk_home }}/bin/splunk enable boot-start -user {{ splunk_user }} --accept-license"
+
+- name: Set ulimits for splunk init.d service
+  lineinfile:
+    path: "{{ splunk_service_file }}"
+    regexp: "ulimit -{{ item.type }}{{ item.ulimit }}"
+    insertafter: "{{ splunk_service_ulimit_start }}"
+    line: "ulimit -{{ item.type }}{{ item.ulimit }} {{ item.value }}"
+  with_items: "{{ splunk_service_ulimits }}"
+
+- name: Create service to disable THP
+  template:
+    src: files/disable-thp.service.j2
+    dest: /etc/systemd/system/disable-thp.service
+
+- name: Enable and start disable-thp.service
+  systemd:
+    name: disable-thp
+    state: started
+    enabled: yes
+    daemon_reload: yes
+
+- name: Start splunk
+  service:
+    name: splunk
+    state: running
+    enabled: yes
