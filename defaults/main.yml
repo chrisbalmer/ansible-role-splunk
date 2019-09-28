@@ -24,6 +24,9 @@ splunk_firewall_ports:
   - 8000/tcp
   - 8089/tcp
 
+# Conf file paths
+splunk_server_conf_location: "{{ splunk_home }}/etc/system/local/server.conf"
+
 # Licensing
 splunk_licenses:
   - http://ops-mirror-1.farm.oakops.io/pub/Splunk.License

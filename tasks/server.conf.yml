@@ -5,3 +5,4 @@
     dest: "{{ splunk_server_conf_location }}"
     owner: splunk 
     group: splunk
+    backup: yes
