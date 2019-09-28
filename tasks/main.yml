@@ -3,6 +3,7 @@
   unarchive:
     src: "{{ splunk_installer }}"
     dest: "{{ splunk_home_parent }}/"
+    creates: "{{ splunk_home }}"
     remote_src: yes
 
 - name: Create group
@@ -57,5 +58,5 @@
 - name: Start splunk
   service:
     name: splunk
-    state: running
+    state: started
     enabled: yes
