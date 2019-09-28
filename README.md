@@ -11,7 +11,17 @@ None
 Role Variables
 --------------
 
-TODO
+```yaml
+splunk_key_general: password
+```
+
+This is the general pass4SymmKey entry in `server.conf`. Use a hashed password if you don't want Splunk overwriting it with a hashed version at startup.
+
+```yaml
+splunk_ssl_password: password
+```
+
+This is the sslPassword entry in `server.conf`. Use a hashed password if you don't want Splunk overwriting it with a hashed version at startup.
 
 Dependencies
 ------------
@@ -28,7 +38,8 @@ Example Playbook
 Tasks
 -----
 
-- [ ] Move firewall settings to dedicated firewall role
+- [ ] Move firewall settings to dedicated firewall role.
+- [ ] Pull existing passwords from conf files if variable isn't defined.
 
 License
 -------

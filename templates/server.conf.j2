@@ -30,7 +30,7 @@ slaves = *
 stack_id = enterprise
 
 [license]
-{% if 'license_master' in splunk_roles %}
+{% if 'license_master' in splunk_roles|default([]) %}
 active_group = Enterprise
 {% else %}
 master_uri = {{ splunk_license_master_uri }}
