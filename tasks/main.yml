@@ -1,10 +1,16 @@
 ---
+- name: Check installation
+  stat:
+    path: "{{ splunk_home }}/{{ splunk_manifest }}"
+  register: splunk_check
+
 - name: Download and unpack installation
   unarchive:
     src: "{{ splunk_installer }}"
     dest: "{{ splunk_home_parent }}/"
     creates: "{{ splunk_home }}"
     remote_src: yes
+  when: splunk_check.stat.exists == false
 
 - name: Create group
   group:
@@ -31,9 +37,11 @@
     dest: /opt/splunk/etc/system/local/user-seed.conf 
     owner: splunk 
     group: splunk
+  when: splunk_check.stat.exists == false
 
 - name: Enable boot start
   command: "{{ splunk_home }}/bin/splunk enable boot-start -user {{ splunk_user }} --accept-license"
+  when: splunk_check.stat.exists == false
 
 - name: Set ulimits for splunk init.d service
   lineinfile:
