@@ -25,6 +25,11 @@ Example Playbook
       roles:
          - { role: chrisbalmer.splunk-installation }
 
+Tasks
+-----
+
+- [ ] Move firewall settings to dedicated firewall role
+
 License
 -------
 

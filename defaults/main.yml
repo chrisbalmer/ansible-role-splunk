@@ -18,3 +18,7 @@ splunk_service_ulimits:
   - type: "H"
     value: 65536
     ulimit: "n"
+splunk_firewall_zone: public
+splunk_firewall_ports:
+  - 8000/tcp
+  - 8089/tcp
