@@ -1,5 +1,5 @@
-Splunk Installation
-===================
+Splunk
+======
 
 Installs Splunk and configures the service.
 

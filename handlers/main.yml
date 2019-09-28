@@ -1,2 +1,5 @@
 ---
-# handlers file for ansible-role-splunk-installation
+- name: Restart Splunk
+  service:
+    name: splunk
+    state: restarted

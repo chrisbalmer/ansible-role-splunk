@@ -1,4 +1,5 @@
 ---
+# Base
 splunk_user: splunk
 splunk_group: splunk
 splunk_uid: 1050
@@ -22,3 +23,9 @@ splunk_firewall_zone: public
 splunk_firewall_ports:
   - 8000/tcp
   - 8089/tcp
+
+# Licensing
+splunk_license: http://ops-mirror-1.farm.oakops.io/pub/Splunk.License
+splunk_update_license: no
+splunk_license_dest: /opt/Splunk.License
+splunk_license_master_uri: https://opsspllic0.farm.oakops.io:8089
