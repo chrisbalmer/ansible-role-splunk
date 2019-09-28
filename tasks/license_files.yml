@@ -1,0 +1,11 @@
+---
+- name: Download license for license master
+  get_url: 
+    url: "{{ item }}"
+    dest: "{{ splunk_license_dest }}"
+    mode: 0600
+    owner: splunk
+    group: splunk
+    force: "{{ splunk_update_license }}"
+  with_items: "{{ splunk_licenses }}"
+  when: "'license_master' in splunk_roles|default([])"

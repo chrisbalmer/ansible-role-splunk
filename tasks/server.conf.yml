@@ -1,0 +1,7 @@
+---
+- name: Configure server.conf
+  template:
+    src: server.conf.j2
+    dest: "{{ splunk_server_conf_location }}"
+    owner: splunk 
+    group: splunk

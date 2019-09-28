@@ -1,3 +1,4 @@
 ---
 - include: base.yml
-- include: licensing.yml
+- include: license_files.yml
+- include: server.conf.yml
