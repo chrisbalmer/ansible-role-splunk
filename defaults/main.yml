@@ -24,9 +24,10 @@ splunk_firewall_ports:
   - 8000/tcp
   - 8089/tcp
 
-# Conf file paths
+# File paths
 splunk_server_conf_location: "{{ splunk_home }}/etc/system/local/server.conf"
 splunk_deploymentclient_conf_location: "{{ splunk_home }}/etc/system/local/deploymentclient.conf"
+splunk_secrets_path: "{{ splunk_home }}/etc/auth/splunk.secret"
 
 # Licensing
 splunk_licenses:

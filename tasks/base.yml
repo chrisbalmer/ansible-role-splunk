@@ -50,13 +50,13 @@
     insertafter: "{{ splunk_service_ulimit_start }}"
     line: "ulimit -{{ item.type }}{{ item.ulimit }} {{ item.value }}"
   with_items: "{{ splunk_service_ulimits }}"
-  register: Splunk Service Check
+  notify: Splunk Service Check
 
 - name: Create service to disable THP
   template:
     src: disable-thp.service.j2
     dest: /etc/systemd/system/disable-thp.service
-  register: Disable-THP Service Check
+  notify: Disable-THP Service Check
 
 - name: Open firewall ports
   firewalld:
