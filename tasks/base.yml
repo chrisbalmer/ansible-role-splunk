@@ -8,7 +8,6 @@
   unarchive:
     src: "{{ splunk_installer }}"
     dest: "{{ splunk_home_parent }}/"
-    creates: "{{ splunk_home }}"
     remote_src: yes
   when: splunk_check.stat.exists == false
 
