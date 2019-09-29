@@ -1,0 +1,9 @@
+---
+- name: Configure deploymentclient.conf
+  template:
+    src: deploymentclient.conf.j2
+    dest: "{{ splunk_deploymentclient_conf_location }}"
+    owner: "{{ splunk_user }}"
+    group: "{{ splunk_group }}"
+    backup: yes
+  register: Splunk Service Check

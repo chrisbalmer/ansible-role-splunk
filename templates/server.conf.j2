@@ -1,9 +1,9 @@
 [general]
 serverName = {{ ansible_fqdn }}
-pass4SymmKey = {{ splunk_key_general }}
+pass4SymmKey = {{ hashed_general_key }}
 
 [sslConfig]
-sslPassword = {{ splunk_ssl_password }}
+sslPassword = {{ hashed_ssl_password }}
 
 [lmpool:auto_generated_pool_download-trial]
 description = auto_generated_pool_download-trial

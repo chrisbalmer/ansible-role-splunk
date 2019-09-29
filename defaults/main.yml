@@ -26,6 +26,7 @@ splunk_firewall_ports:
 
 # Conf file paths
 splunk_server_conf_location: "{{ splunk_home }}/etc/system/local/server.conf"
+splunk_deploymentclient_conf_location: "{{ splunk_home }}/etc/system/local/deploymentclient.conf"
 
 # Licensing
 splunk_licenses:
@@ -33,3 +34,6 @@ splunk_licenses:
 splunk_license_dest: "{{ splunk_home }}/etc/licenses/enterprise/"
 splunk_update_license: no
 splunk_license_master_uri: https://opsspllic0.farm.oakops.io:8089
+
+# Deployment client
+splunk_deployment_server_uri: https://opssplds0.farm.oakops.io:8089

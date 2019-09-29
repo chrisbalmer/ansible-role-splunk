@@ -2,3 +2,4 @@
 - include: base.yml
 - include: license_files.yml
 - include: server.conf.yml
+- include: deploymentclient.conf.yml
