@@ -1,6 +1,8 @@
 Splunk
 ======
 
+**Still a work in progress**
+
 Installs Splunk and configures the service.
 
 Requirements
@@ -39,7 +41,7 @@ Tasks
 -----
 
 - [ ] Move firewall settings to dedicated firewall role.
-- [ ] Pull existing passwords from conf files if variable isn't defined.
+- [ ] Fix supplying secrets for files so they aren't overwritten every time.
 
 License
 -------
