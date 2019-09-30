@@ -1,2 +1,4 @@
+{% if 'deployment_client' in splunk_roles|default([]) %}
 [target-broker:deploymentServer]
 targetUri = {{ splunk_deployment_server_uri }}
+{% endif %}
