@@ -1,0 +1,42 @@
+---
+- name: Create license directory
+  file:
+    path: "{{ splunk_license_dest }}"
+    state: directory
+    owner: "{{ splunk_user }}"
+    group: "{{ splunk_group }}"
+  when: "'license_master' in splunk_roles|default([])"
+
+    
+- name: Download license for license master
+  get_url: 
+    url: "{{ item }}"
+    dest: "{{ splunk_license_dest }}"
+    mode: 0600
+    owner: "{{ splunk_user }}"
+    group: "{{ splunk_group }}"
+    force: "{{ splunk_update_license }}"
+  with_items: "{{ splunk_licenses }}"
+  when: "'license_master' in splunk_roles|default([])"
+
+- name: Set as license master
+  ini_file:
+    path: "{{ splunk_server_conf_location }}"
+    section: license
+    option: active_group
+    value: Enterprise
+    mode: '0660'
+    backup: yes
+  when: "'license_master' in splunk_roles|default([])"
+  notify: Splunk Service Check
+
+- name: Set as license slave
+  ini_file:
+    path: "{{ splunk_server_conf_location }}"
+    section: license
+    option: master_uri
+    value: "{{ splunk_license_master_uri }}"
+    mode: '0660'
+    backup: yes
+  when: "'license_master' not in splunk_roles|default([])"
+  notify: Splunk Service Check

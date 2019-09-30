@@ -1,6 +1,6 @@
 ---
 - include: base.yml
-- include: secrets.yml
-- include: license_files.yml
-- include: server.conf.yml
-- include: deploymentclient.conf.yml
+- include: server.yml
+- include: licensing.yml
+- include: deploymentclient.yml
+  when: "'deployment_server' not in splunk_roles|default([])"

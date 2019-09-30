@@ -1,9 +1,0 @@
----
-- name: Configure server.conf
-  template:
-    src: server.conf.j2
-    dest: "{{ splunk_server_conf_location }}"
-    owner: "{{ splunk_user }}"
-    group: "{{ splunk_group }}"
-    backup: yes
-  notify: Splunk Service Check

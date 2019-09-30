@@ -1,0 +1,11 @@
+---
+- name: Set Splunk hostname
+  ini_file:
+    path: "{{ splunk_server_conf_location }}"
+    section: general
+    option: serverName
+    value: "{{ ansible_fqdn }}"
+    mode: '0660'
+    backup: yes
+  when: "'license_master' in splunk_roles|default([])"
+  notify: Splunk Service Check
