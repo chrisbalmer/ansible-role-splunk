@@ -43,9 +43,29 @@
     group: "{{ splunk_group }}"
   when: splunk_check.stat.exists == false
 
+- name: Clear user-seed.conf
+  file:
+    path: "{{ splunk_home }}/etc/system/local/user-seed.conf"
+    state: absent
+  when: splunk_check.stat.exists
+
 - name: Enable boot start
   command: "{{ splunk_home }}/bin/splunk enable boot-start -user {{ splunk_user }} --accept-license"
   when: splunk_check.stat.exists == false
+
+- name: Create deployment client app directory
+  file:
+    path: "{{ splunk_home }}/etc/apps/{{ splunk_deploymentclient_app }}/local/"
+    state: directory
+    owner: "{{ splunk_user }}" 
+    group: "{{ splunk_group }}"
+
+- name: Configure deployment client
+  template:
+    src: templates/deploymentclient.conf.j2
+    dest: "{{ splunk_home }}/etc/apps/{{ splunk_deploymentclient_app }}/local/deploymentclient.conf"
+    owner: "{{ splunk_user }}" 
+    group: "{{ splunk_group }}"
 
 - name: Set ulimits for splunk init.d service
   lineinfile:
