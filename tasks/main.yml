@@ -38,7 +38,7 @@
 - name: Seed password with user-seed.conf
   template:
     src: user-seed.conf.j2 
-    dest: "{{ splunk_home }}/etc/system/local/user-seed.conf "
+    dest: "{{ splunk_home }}/etc/system/local/user-seed.conf"
     owner: "{{ splunk_user }}" 
     group: "{{ splunk_group }}"
   when: splunk_check.stat.exists == false
